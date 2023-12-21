@@ -1,5 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using WebAPI.Repositories;
+using WebAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<RepositoryContext>(optios =>
-optios.UseSqlServer(builder.Configuration.GetConnectionString("SQLConnection")));
+
+builder.Services.ConfigureSqlContext(builder.Configuration); // ServicesExtensions'tan geliyor.
+builder.Services.ConfigureRepositoryManager(); // Tek parametre olduðu için (dizi olmadýðý için) vermek zorunda deðilim.
 var app = builder.Build();
 
 
