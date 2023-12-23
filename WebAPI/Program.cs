@@ -10,6 +10,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.ConfigureSqlContext(builder.Configuration); // ServicesExtensions'tan geliyor.
 builder.Services.ConfigureRepositoryManager(); // Tek parametre olduðu için (dizi olmadýðý için) vermek zorunda deðilim.
+builder.Services.ConfigureServiceManager();
 var app = builder.Build();
 
 
